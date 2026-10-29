@@ -1,0 +1,37 @@
+Hi
+Hi, there
+Good Morning, How are You?
+I am Fine, Thanks for Asking How can I help You?
+Good Afternoon, How are You?
+I am Good, Thanks for Asking How can I help You?
+Good Evening, How are You?
+I am well, Thanks for Asking How can I help You?
+I am Unwell, I have high body temperature.
+I can Understand that, Tell me more about like any other symptoms?
+feeling of internal restless, pain in lower extermities to anklet if you are in emergency situation can take medications like mirtazapine and trazodone.
+It seems you have akasthisia related problem, Consult nearby hospital immediately.
+can I get nearby Hospital details?
+shore, say something where you are like pincode or city?
+city is near to Tumkur-Bengaluru Road.
+oo okay, Your nearest hospital is Sidganga Hospital(2954/139, Bengaluru - Honnavar Road, 7th Cross, Opposite Vigneshwara comforts Hotel, Ward No. 18, Ashok Nagar, Tumkur, Karnataka, 572101.
+But we are in Mallasandra Now.
+Now, You can go to Siddhartha Hospital in heggere that is near to your location.
+Okay, Thank You.
+Welcome
+I am near to Bengaluru.
+where are you in bengaluru?
+Malleshwaram.
+The nearest hospital to you is Manipal Hospital, Bengaluru Superspeciality Clinic, Manipal Northside Hospital etc. which you choose?
+I go to Manipal Northside Hospital.Give me an address?
+shore, the address is No. 71, 11th Main Rd, Opposite to Railway station, Malleshwaram, Benagluru, Karnataka, 560003.
+I am feeling very high and extremely irritable, having decreased need for sleep.
+It seems you have bipolar related problem, consult nearby hospital, if you are in emergency situation can take medications like anticonvulsant and antipsychotic.
+when I have symptoms like this, What can I do?
+What are the symptoms?
+racing heart, sweating, chest pain, congestion etc...
+You have common panic disorder, if you are in emergency situation take antidipressent tablet after food, Would you want me to get hospitals near by you?
+yes
+When I have symptoms like headache and muscle pain, restlesness stress what can I do?
+You have anxiety disorder, consult the psychiatrist and dont worry everything will be alright!.
+
+

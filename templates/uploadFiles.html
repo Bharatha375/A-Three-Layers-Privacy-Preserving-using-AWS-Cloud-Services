@@ -1,0 +1,117 @@
+{% extends 'home.html' %}
+
+{% block home %}
+<div class="container d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    
+  <div class="card shadow p-4 w-100" style="max-width: 500px; margin-top: 50px;">
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+    <h4 class="text-center mb-4">Upload File</h4>
+
+    <form action="{% url 'uploadFiles' %}" method="POST" enctype="multipart/form-data" id="uploadForm">
+      {% csrf_token %}
+      <div>
+        <p>File name:</p>
+        <input type="text" class="mb-3 border border-2 border-secondary w-100" placeholder="Enter file name" name="fileName">
+      </div>
+
+      <div id="dropZone" class="border border-2 border-secondary border-dashed rounded p-4 text-center" style="cursor: pointer;">
+        <div class="mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="gray" class="bi bi-upload" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5-.4h4v-7a.5.5 0 0 1 1 0v7h4a.5.5 0 0 1 .4.9l-5 5a.5.5 0 0 1-.8 0l-5-5z"/>
+            <path d="M7.5 1.5a.5.5 0 0 0-1 0v7h-4a.5.5 0 0 0-.4.9l5 5a.5.5 0 0 0 .8 0l5-5a.5.5 0 0 0-.4-.9h-4v-7z"/>
+          </svg>
+        </div>
+        <p class="text-muted small">Drag and drop a file here or <span class="text-primary text-decoration-underline">click to upload</span></p>
+        <p class="text-muted small">Supported: PDF, PNG, JPG, MP4 (Max 10MB)</p>
+        <input type="file" name="file" id="fileInput" accept=".txt,.pdf,.docx" class="d-none" required>
+      </div>
+
+      <div id="fileList" class="mt-3 overflow-auto" style="max-height: 200px;"></div>
+
+      <button type="submit" id="uploadButton" class="btn btn-primary w-100 mt-3" disabled>Upload File</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const fileList = document.getElementById('fileList');
+  const uploadButton = document.getElementById('uploadButton');
+
+  let selectedFile = null;
+
+  // Highlight on drag
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('bg-light', 'border-primary');
+  });
+
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('bg-light', 'border-primary');
+  });
+
+  // Drop file
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('bg-light', 'border-primary');
+    const files = e.dataTransfer.files;
+    if (files.length > 1) {
+      alert("Please upload only one file.");
+      return;
+    }
+    handleFile(files[0]);
+  });
+
+  // Click file input
+  dropZone.addEventListener('click', () => fileInput.click());
+
+  fileInput.addEventListener('change', () => {
+    const files = fileInput.files;
+    if (files.length > 1) {
+      alert("Please select only one file.");
+      fileInput.value = '';
+      return;
+    }
+    handleFile(files[0]);
+  });
+
+  // Display selected file
+  function handleFile(file) {
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (file.size > maxSize) {
+      alert(`${file.name} is too large. Max 10MB.`);
+      fileInput.value = '';
+      selectedFile = null;
+      fileList.innerHTML = '';
+      uploadButton.disabled = true;
+      return;
+    }
+
+    selectedFile = file;
+    fileList.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+        <span class="text-muted small">${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeFile()">Remove</button>
+      </div>
+    `;
+    uploadButton.disabled = false;
+  }
+
+  // Remove file
+  window.removeFile = () => {
+    selectedFile = null;
+    fileInput.value = '';
+    fileList.innerHTML = '';
+    uploadButton.disabled = true;
+  };
+</script>
+{% endblock %}
+
+{% block boxes %}{% endblock %}
+{% block about %}{% endblock %}
+{% block Services %}{% endblock %}

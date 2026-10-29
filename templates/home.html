@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-1 shadow-sm">
+  <div class="container-fluid">
+    {% if login == 'user' %}
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+        <i class="fa fa-user-tie me-2"></i>Welcome {{ userName }}
+      </a>
+    {% elif login == 'cloud' %}
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+        <i class="fa fa-user-tie me-2"></i>Welcome Cloud
+      </a>
+    {% else %}
+      <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+        <i class="fa fa-user-tie me-2"></i>Three Layered
+      </a>
+    {% endif %}
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a href="{% url 'index' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+        </li>
+
+        {% if login == 'user' %}
+          <li class="nav-item">
+            <a href="{% url 'uploadFiles' %}" class="nav-link">Upload Files</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'viewFiles' %}" class="nav-link">View Files</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link text-danger">Logout</a>
+          </li>
+
+        {% elif login == 'cloud' %}
+          <li class="nav-item">
+            <a href="{% url 'view_all_users' %}" class="nav-link">View Users</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'view_user_uploaded_files' %}" class="nav-link">View Files</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'viewDownloadRequests' %}" class="nav-link">View Requests</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link text-danger">Logout</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Single message block displayed once -->
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block home %}
+<div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="w-100" src="/static/img/carousel-1.jpg" alt="Image">
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <div class="p-3" style="max-width: 900px;">
+          <h2 class="text-white text-uppercase mb-3 animated slideInDown">
+            A ThreeLayer Privacy Preserving Cloud Storage Scheme Based on Computational Intelligence in Fog Computing
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="w-100" src="/static/img/carousel-2.jpg" alt="Image">
+      <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+        <div class="p-3" style="max-width: 900px;">
+          <h2 class="text-white text-uppercase mb-3 animated slideInDown">
+            A ThreeLayer Privacy Preserving Cloud Storage Scheme Based on Computational Intelligence in Fog Computing
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock %}
